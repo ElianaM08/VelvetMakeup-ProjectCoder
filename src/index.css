@@ -1,0 +1,397 @@
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&family=Montserrat&family=Nanum+Gothic&family=Quicksand:wght@300..700&family=Raleway:ital,wght@1,262&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  font-weight:400;
+  background-color: #fafafa;
+  color: #222;
+  line-height: 1.5;
+}
+
+/* -------------------------------
+   NAVBAR
+--------------------------------*/
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #000000;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+ height: 40px;
+}
+
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 6px 8px;
+  transition: color 0.3s;
+}
+
+.nav-btn:hover,
+.nav-btn:focus {
+  color: #c21046;
+  outline: none;
+}
+
+/* -------------------------------
+   CARD WIDGET (CARRITO)
+--------------------------------*/
+.card-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.card-widget:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.card-widget:focus {
+  outline: 2px solid rgba(231, 84, 128, 0.25);
+}
+
+.cart-count {
+  background: #e75480;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  min-width: 24px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  height: 90vh; 
+  background: url("./assets/inicio.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4); 
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.hero-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+
+}
+
+.imagen-section {
+ .imagen-section {
+  width: 100%;
+  height: 100vh;
+  background-image: url('../assets/mujerMaquillandose.jpg');
+  background-size: cover;
+  background-position: center;
+}
+}
+.imagen-section .imagen-full {
+  width: 100%;
+  height: 400px;
+  object-fit:cover;
+}
+.descripcion {
+  width: 100%;
+  padding: 60px 20px;
+  background-color: #fafafa;
+  text-align: center;
+}
+
+.descripcion-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.descripcion h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #c21046;
+}
+
+.descripcion p {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  padding: 20px;
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  color: #f7c2d0; 
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Productos con layout ===== */
+.productos {
+  padding: 4rem 2rem;
+  background: #fff;
+}
+
+.productos-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.productos-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productos-titulo h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color:#c21046;
+  margin: 50px;
+  padding-top: 40px;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card h3 {
+  margin: 10px 0 5px;
+  font-size: 1.2rem;
+}
+
+.card p {
+  font-weight: bold;
+  color: #b30059;
+}
+
+
+/* -------------------------------
+   ITEM LIST CONTAINER
+--------------------------------*/
+.item-list-container {
+  padding: 40px;
+  text-align: center;
+}
+
+.item-list-container h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.item-list-container p {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.product-card {
+  display: inline-block;
+  padding: 16px;
+  margin: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 220px;
+  background: #fff;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-card h4 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.product-card p {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #666;
+}
+.product-img{
+ 
+  width: 100%;
+  height: 180px;          
+  object-fit: cover;      
+  border-radius: 6px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.product-card button {
+  background: #e75480;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.product-card button:hover {
+  background: #d43f6e;
+}
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: 20px; 
+}
+
+
+/* -------------------------------
+   CARRITO 
+--------------------------------*/
+.cart-page {
+  padding: 40px;
+}
+
+.cart-page h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.cart-page p {
+  font-size: 1.1rem;
+  color: #444;
+}
+/* -------------------------------
+   ITEM LIST CONTAINER
+--------------------------------*/
+
+.item-list-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.productos-container {
+  margin-top: 20px;
+}
+
+.producto-card {
+  display: inline-block;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+.producto-card:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.producto-card h4 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+.labial-rojo{
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.btn-agregar {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  background-color: #e75480; 
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-agregar:hover {
+  background-color: #d14a72;
+}

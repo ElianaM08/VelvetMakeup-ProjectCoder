@@ -1,93 +1,77 @@
-import { useState } from "react";
-import Navbar from "./components/NavBar.jsx";
-import ItemListContainer from "./components/ItemListContainer";
-import Home from "./pages/Home";
-import "./index.css";
-import labialRojo from "./assets/labialRojo.jpg";
-import gloss from "./assets/gloss.jpg";
-import paleta from "./assets/paletaDorada.jpg";
-import labialNude from "./assets/labiales.jpg";
-import glossClarito from "./assets/glossClarito.jpg";
-import paletaColores from "./assets/paletaColores.jpg";
-import combo3 from "./assets/combo3.jpg";
-import comboNude from "./assets/comboNude.jpg";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Navbar from "./Components/Navbar/NavBar.jsx";
+import ItemListContainer from "./Components/ItemListContainer/ItemListContainer.jsx";
+import ItemDetail from "./Components/ItemDetail/ItemDetail.jsx";
+import CartWidget from "./Components/CartWidget/CartWidget.jsx";
+import Home from "./pages/Home.jsx";
+import "./App.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [page, setPage] = useState("home");
-  const [cartCount, setCartCount] = useState(0);
+  const [cart, setCart] = useState([]);
 
-  const handleAddToCart = (qty = 1) => {
-    setCartCount((prev) => prev + qty);
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(storedCart);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  const addToCart = (product) => {
+    setCart((prevCart) => {
+      const existing = prevCart.find((item) => item.id === product.id);
+      if (existing) {
+        return prevCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+      return [...prevCart, { ...product, quantity: 1 }];
+    });
   };
 
-  const labiales = [
-    { id: 1, name: "Labial - Rojo Intenso", price: 1200, img: labialRojo },
-    { id: 2, name: "Labial- Nude", price: 1150, img: labialNude },
-  ];
 
-  const glosses = [
-    { id: 1, name: "Gloss Brillante", price: 1000, img: gloss },
-    { id: 2, name: "Gloss Rosa", price: 1100, img: glossClarito  },
-  ];
+  const handlePurchase = () => {
+    setCart([]);
+    localStorage.removeItem("cart");
+    toast.success("¡Tu compra fue realizada con éxito!", {
+      position: "top-center",
+      autoClose: 3000, 
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
 
-  const paletas = [
-    { id: 1, name: "Paleta Dorada", price: 2500, img: paleta },
-    { id: 2, name: "Paleta Smokey Eyes", price: 2600, img: paletaColores },
-  ];
-
-  const combos = [
-    { id: 1, name: "Combo Labial + rubor + delineador", price: 2000, img: combo3 },
-    { id: 2, name: "Combo Completo", price: 5000, img: comboNude },
-  ];
+    setCart([]); 
+    localStorage.removeItem("cart");
+  };
 
   return (
-    <>
-      <Navbar setPage={setPage} cartCount={cartCount} />
+    <BrowserRouter>
+      <Navbar cart={cart} />
 
-      {page === "home" && <Home />}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/productos" element={<ItemListContainer greeting="Todos los productos 💄" />} />
+        <Route path="/category/:categoryId" element={<ItemListContainer />} />
+        <Route path="/item/:itemId" element={<ItemDetail addToCart={addToCart} />} />
+        <Route path="/cart" element={<CartWidget cart={cart} onPurchase={handlePurchase} />} />
+        <Route path="*" element={<div className="pagError">Error 404: Página no encontrada</div>} />
+      </Routes>
 
-      {page === "labiales" && (
-        <ItemListContainer
-          greeting="Labiales"
-          onAddToCart={handleAddToCart}
-          products={labiales}
-        />
-      )}
+      <ToastContainer />
+    </BrowserRouter>
 
-      {page === "gloss" && (
-        <ItemListContainer
-          greeting="Gloss"
-          onAddToCart={handleAddToCart}
-          products={glosses}
-        />
-      )}
-
-      {page === "paletas" && (
-        <ItemListContainer
-          greeting="Paletas de Sombras"
-          onAddToCart={handleAddToCart}
-          products={paletas}
-        />
-      )}
-
-      {page === "combos" && (
-        <ItemListContainer
-          greeting="Combos Especiales"
-          onAddToCart={handleAddToCart}
-          products={combos}
-        />
-      )}
-
-      {page === "carrito" && (
-        <main style={{ padding: 20 }}>
-          <h2>Tu carrito</h2>
-          <p>Tenés {cartCount} artículo/s en el carrito.</p>
-        </main>
-      )}
-    </>
   );
 }
 
 export default App;
+
 
 

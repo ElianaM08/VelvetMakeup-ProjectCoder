@@ -2,11 +2,11 @@ import labial from '../assets/labialRojo.jpg'
 import gloss from '../assets/gloss.jpg'
 import paletaDorada from '../assets/paletaDorada.jpg'
 import modelo from '../assets/mujerMaquillandose.jpg'
+import '../pages/Home.css'
 
 function Home() {
   return (
     <div className="home">
-      {/* Sección Hero */}
       <section className="hero">
         <div className="hero-content">
           <h1 className="hero-title">Velvet</h1>
@@ -53,4 +53,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Home;

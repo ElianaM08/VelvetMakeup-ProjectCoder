@@ -1,0 +1,155 @@
+.hero {
+  height: 100vh; 
+  background: url("../assets/inicio.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4); 
+ /*  z-index: 1; */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.hero-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+
+}
+
+.imagen-section {
+ .imagen-section {
+  width: 100%;
+  height: 100vh;
+  background-image: url('../assets/mujerMaquillandose.jpg');
+  background-size: cover;
+  background-position: center;
+}
+}
+.imagen-section .imagen-full {
+  width: 100%;
+  height: 400px;
+  object-fit:cover;
+}
+.descripcion {
+  width: 100%;
+  padding: 60px 20px;
+  background-color: #fafafa;
+  text-align: center;
+}
+
+.descripcion-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.descripcion h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #c21046;
+}
+
+.descripcion p {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+
+.productos {
+  margin-top: 30px;
+  padding: 4rem 2rem;
+  background: #fff;
+}
+
+.productos-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.productos-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productos-titulo h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color:#c21046;
+  margin: 50px;
+  padding-top: 40px;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card h3 {
+  margin: 10px 0 5px;
+  font-size: 1.2rem;
+}
+
+.card p {
+  font-weight: bold;
+  color: #b30059;
+}
+.footer {
+  width: 100%;
+  padding: 20px;
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  color: #f7c2d0; 
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}

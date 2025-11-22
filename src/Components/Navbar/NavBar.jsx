@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 import "./Navbar.css";
 import logo from "../../assets/Velvet Logo.jpg";
+import { CartContext } from "../../Context/CartContext";
 
-const Navbar = ({cart}) => {
+const Navbar = () => {
+    const {cart} = useContext(CartContext);
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
   return (
     <nav className="navbar">

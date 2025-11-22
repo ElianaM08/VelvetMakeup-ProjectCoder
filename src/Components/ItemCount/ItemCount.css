@@ -37,3 +37,36 @@
   color: #e10b0b;
   cursor: pointer;
 }
+.go-cart,
+.go-back {
+  padding: 0.8rem 1.4rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 200px;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.go-cart {
+  background-color: #ff4081;
+  color: white;
+  font-weight: bold;
+}
+
+.go-cart:hover {
+  background-color: #e73370;
+}
+.go-back {
+  background-color: transparent;
+  border: 2px solid #ff4081;
+  color: #ff4081;
+  font-weight: bold;
+}
+
+.go-back:hover {
+  background-color: #ff4081;
+  color: white;
+}

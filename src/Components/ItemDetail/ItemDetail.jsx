@@ -1,13 +1,18 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
 import products from "../../Data/Products";
 import Loading from "../Loading/Loading";
+import ItemCount from "../ItemCount/ItemCount";
+import { CartContext } from "../../Context/CartContext";
 import "./ItemDetail.css";
 
-const ItemDetail = ({ addToCart }) => {
+const ItemDetail = () => {
   const { itemId } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [viewItemCount, setViewItemCount] = useState(true);
+
+  const { addProduct } = useContext(CartContext);
 
   useEffect(() => {
     setLoading(true);
@@ -23,6 +28,17 @@ const ItemDetail = ({ addToCart }) => {
     });
   }, [itemId]);
 
+  const addToCart = (count) => {
+    setViewItemCount(false);
+
+    const newProduct = {
+      ...product,
+      quantity: count,
+    };
+
+    addProduct(newProduct);
+  };
+
   if (loading) return <Loading />;
 
   if (!product)
@@ -35,7 +51,6 @@ const ItemDetail = ({ addToCart }) => {
   return (
     <div className="item-detail-container">
       <img src={product.img} alt={product.name} className="item-detail-img" />
-
       <div className="item-detail-info">
         <h1>{product.name}</h1>
         <p className="price">${product.price}</p>
@@ -44,24 +59,23 @@ const ItemDetail = ({ addToCart }) => {
             `Este ${product.name.toLowerCase()} es ideal para completar tu look Velvet.`}
         </p>
 
-        <button
-          className="add-to-cart"
-          onClick={() =>
-            addToCart({
-              id: product.id,
-              name: product.name,
-              price: product.price,
-              img: product.img,
-            })
-          }
-        >
-          Agregar al carrito
-        </button>
+        {viewItemCount ? (
+          <ItemCount stock={product.stock} addToCart={addToCart} />
+        ) : (
+          <>
+            <Link to="/cart">
+              <button className="go-cart">Ir al carrito</button>
+            </Link>
 
-
+            <Link to="/productos">
+              <button className="go-back">Volver</button>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
 };
 
 export default ItemDetail;
+

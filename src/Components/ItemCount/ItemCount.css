@@ -12,7 +12,7 @@
 .controls-count button{
   width: 40px;
   height: 40px;
-  background-color: rgb(42, 42, 42);
+  background-color: #e75480;
   border: 1px solid white;
   border-radius: 5px;
   color: white;
@@ -27,14 +27,14 @@
 
 .button-add-count{
   padding: 10px 0;
-  background-color: rgb(42, 42, 42);
+  background-color: #e75480;
   border: 1px solid white;
   border-radius: 5px;
   color: white;
 }
 .button-add-count:hover{
   border: 1px solid #9b0b0b;
-  color: #e10b0b;
+  color: #ffffff;
   cursor: pointer;
 }
 .go-cart,

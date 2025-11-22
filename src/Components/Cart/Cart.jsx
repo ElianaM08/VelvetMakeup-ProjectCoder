@@ -1,55 +1,71 @@
-import React, { useEffect, useState } from "react";
-
+import { useContext } from "react";
+import { CartContext } from "../../Context/CartContext";
 import "./Cart.css";
+import { toast } from "react-toastify";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
+  const { cart, deleteProductById, totalPrice, deleteCart } = useContext(CartContext);
 
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCartItems(storedCart);
-  }, []);
+  const handleBuy = () => {
+    toast.success("¡Tu compra fue realizada con éxito!", {
+      position: "top-center",
+      autoClose: 2500,
+    });
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-  }, [cartItems]);
-
-  const removeItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+    deleteCart();
   };
 
-  const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  if (cart.length === 0) {
+    return (
+      <div className="cart-container">
+        <h1>Mi Carrito</h1>
+        <p>Tu carrito está vacío 😢</p>
+      </div>
+    );
+  }
 
   return (
     <div className="cart-container">
       <h1>Mi Carrito</h1>
-      {cartItems.length === 0 ? (
-        <p>Tu carrito está vacío 😢</p>
-      ) : (
-        <div className="cart-items">
-          {cartItems.map((item) => (
-            <div className="cart-item" key={item.id}>
-              <img src={item.img} alt={item.name} className="cart-item-img" />
-              <div className="item-info">
-                <p>{item.name}</p>
-                <p>${item.price} x {item.quantity}</p>
-                <p>Subtotal: ${item.price * item.quantity}</p>
-              </div>
-              <button onClick={() => removeItem(item.id)} className="remove-btn">
-                Eliminar
-              </button>
+
+      <div className="cart-items">
+        {cart.map((item) => (
+          <div className="cart-item" key={item.id}>
+            <img src={item.img} alt={item.name} className="cart-item-img" />
+
+            <div className="item-info">
+              <p>{item.name}</p>
+              <p>${item.price} x {item.quantity}</p>
+              <p>Subtotal: ${item.price * item.quantity}</p>
             </div>
-          ))}
-          <div className="cart-total">
-            <h2>Total: ${totalPrice}</h2>
+
+            <button
+              onClick={() => deleteProductById(item.id)}
+              className="remove-btn"
+            >
+              Eliminar
+            </button>
+          </div>
+        ))}
+
+        <div className="cart-total">
+          <h2>Total: ${totalPrice()}</h2>
+
+          <div className="cart-buttons">
+            <button className="clear-cart-btn" onClick={deleteCart}>
+              Vaciar carrito
+            </button>
+
+            <button className="buy-btn" onClick={handleBuy}>
+              Finalizar compra
+            </button>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
 
 export default Cart;
+
+

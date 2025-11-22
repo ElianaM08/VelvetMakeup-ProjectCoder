@@ -3,6 +3,7 @@ import { useContext } from "react";
 import "./Navbar.css";
 import logo from "../../assets/Velvet Logo.jpg";
 import { CartContext } from "../../Context/CartContext";
+import CartWidget from "../CartWidget/CartWidget";
 
 const Navbar = () => {
     const {cart} = useContext(CartContext);
@@ -22,10 +23,7 @@ const Navbar = () => {
         <li><Link to="/category/Paletas">Paletas</Link></li>
         <li><Link to="/category/Combos">Combos</Link></li>
       </ul>
-      <div className="navbar-cart">
-        <Link to="/cart" >🛒 Carrito ({totalItems})</Link>
-      </div>
-      
+     <CartWidget totalItems={totalItems} />
     </nav>
   );
 };
